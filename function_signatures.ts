@@ -13,3 +13,4 @@ function print2(a: number) {
 
 print2.description = "A function that returns 2";
 callAnotherFunction(print2);
+//the syntax is slightly different compared to a function type expression - use : between the parameter list and the return type rather than =>.
