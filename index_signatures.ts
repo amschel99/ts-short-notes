@@ -35,6 +35,33 @@ interface NumberDictionary {
   name: string;
 
 }
+//Excess property checks
 
 
+interface SquareConfig {
+  color?: string;
+  width?: number;
+}
+ 
+function createSquare(config: SquareConfig): { color: string; area: number } {
+  return {
+    color: config.color || "red",
+    area: config.width ? config.width * config.width : 20,
+  };
+}
+ 
+let mySquare = createSquare({ colour: "red", width: 100 });// there is an error here coz colour is not in interface SquareConfig
+//this happens due to excess propert checks
+//First way to resolve this would be 
+let sqOptions={ colour: "red", width: 100 };
+createSquare(sqOptions);
+//the above works sine excess property check is not done on sqOptions. But for this to work sqOptions should hae one propert present in the interface and in 
+//case that was width
+// second way and recommended is to define the interface like this
+interface SquareConfig {
+  color?: string;
+  width?: number;
+  [propName: string]: any;
+}
+// the interface can have any properties of any type in addition to color and width
 
